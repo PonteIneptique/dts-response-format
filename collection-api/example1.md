@@ -14,10 +14,9 @@ I propose a slightly more fixed version of Hydra where the following would be al
 - "@context" should be 
     - extending Hydra
     - providing DC, DCT and DTS namespaces prefix
-- `dts:capabilities` holds three potential keys with URIs as values :
-    - `dts:navigate` which holds a links to the Navigation API route for current object
-    - `dts:read` which holds a link to the Passage API for the current object
-    - `dts:download` which holds a link or a list of links to a downloadable format of the current object
+- `dts:navigate` holds a links to the Navigation API route for current object (mandatory in children of `member` ?)
+- `dts:read` holds a link to the Passage API for the current object
+- `dts:download` holds a link or a list of links to a downloadable format of the current object
 
 
 ## Examples
@@ -37,7 +36,13 @@ I propose a slightly more fixed version of Hydra where the following would be al
 
 ```json
 {
-    "@context": "http://www.w3.org/ns/hydra/context.jsonld",
+    "@context": {
+        "@base": "http://www.w3.org/ns/hydra/context.jsonld",
+        "dct": "http://purl.org/dc/terms/",
+        "dts": "http://purl.org//dts-ontology/#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "tei": "http://www.tei-c.org/ns/1.0",
+    },
     "@id": "general",
     "@type": "Collection",
     "totalItems": "2",
@@ -105,7 +110,13 @@ I propose a slightly more fixed version of Hydra where the following would be al
 
 ```json
 {
-    "@context": "http://www.w3.org/ns/hydra/context.jsonld",
+    "@context": {
+        "@base": "http://www.w3.org/ns/hydra/context.jsonld",
+        "dct": "http://purl.org/dc/terms/",
+        "dts": "http://purl.org//dts-ontology/#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "tei": "http://www.tei-c.org/ns/1.0",
+    },
     "@id": "lasciva_roma",
     "@type": "Collection",
     "totalItems": "2",
@@ -136,7 +147,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
                 "dc:creator": [
                     {"@lang": "eng", "@value": "Anonymous"
                 ],
-                "dc:lang": ["lat", "eng"]
+                "dc:language": ["lat", "eng"]
             },
             "description": [
                 {
@@ -154,19 +165,29 @@ I propose a slightly more fixed version of Hydra where the following would be al
 
 ### Sub-collection, not readable but with readable members
 
-### Example of url : 
+#### Note
+
+As a provider of a small collection, I would do the choice here to expand the metadata to more than readable to avoid successive calls of the API
+
+#### Example of url : 
 
 - `/api/dts/collections/?id=urn:cts:latinLit:phi1103.phi001`
 
-### Headers
+#### Headers
 
 *Need to be written and need help as I don't get the URI templating thingie*
 
-### Response
+#### Response
 
 ```json
 {
-    "@context": "http://www.w3.org/ns/hydra/context.jsonld",
+    "@context": {
+        "@base": "http://www.w3.org/ns/hydra/context.jsonld",
+        "dct": "http://purl.org/dc/terms/",
+        "dts": "http://purl.org//dts-ontology/#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "tei": "http://www.tei-c.org/ns/1.0",
+    },
     "@id": "urn:cts:latinLit:phi1103.phi001",
     "@type": "Collection",
     "title" : [
@@ -179,7 +200,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
         "dc:creator": [
             {"@lang": "eng", "@value": "Anonymous"
         ],
-        "dc:lang": ["lat", "eng"]
+        "dc:language": ["lat", "eng"]
     },
     "description": [
         {
@@ -197,15 +218,16 @@ I propose a slightly more fixed version of Hydra where the following would be al
             ],
             "dts:metadata": {
                 "dc:type": [
-                    "http://chs.harvard.edu/xmlns/cts#edition"
+                    "http://chs.harvard.edu/xmlns/cts#edition",
+                    "dc:Text"
                 ],
-                "dc:source": ["https://archive.org/details/poetaelatinimino12baeh2"],
+                "dc:source": [{"@id": https://archive.org/details/poetaelatinimino12baeh2"}],
                 "dct:dateCopyrighted": 1879
                 "dc:creator": [
                     {"@lang": "eng", "@value": "Anonymous"
                 ],
                 "dc:contributor": ["Aemilius Baehrens"]
-                "dc:lang": ["lat", "eng"]
+                "dc:language": ["lat", "eng"]
             },
             "description": [
                 {
@@ -215,8 +237,95 @@ I propose a slightly more fixed version of Hydra where the following would be al
             ],
             "@type" : "Collection",
             "totalItems" : "1",
-            ***********************************************
-            "dts:read": URI of READ
+            "dts:read": "/api/dts/documents?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+            "dts:navigate": "/api/dts/navigation?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+            "tei:refsDecl": [
+                {
+                    "tei:matchPattern":  "\\w+",
+                    "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])",
+                    "@type": "book"
+                },
+                {
+                    "tei:matchPattern": "\\w+\\.\\w+",
+                    "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])",
+                    "@type": "poem"
+                },
+                {
+                    "tei:matchPattern":  "\\w+\.\w+\\.\\w+",
+                    "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
+                    "@type": "line"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Sub-collection readable
+
+#### Example of url : 
+
+- `/api/dts/collections/?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1`
+
+#### Headers
+
+*Need to be written and need help as I don't get the URI templating thingie*
+
+#### Response
+
+```json
+{
+    "@context": {
+        "@base": "http://www.w3.org/ns/hydra/context.jsonld",
+        "dct": "http://purl.org/dc/terms/",
+        "dts": "http://purl.org//dts-ontology/#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "tei": "http://www.tei-c.org/ns/1.0",
+    },
+    "@id": "urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+    "@type" : "Resource",
+    "@id" : "urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+    "title" : [
+        {"@lang": "lat", "@value": "Priapeia", "default": true},
+    ],
+    "dts:metadata": {
+        "dc:type": [
+            "http://chs.harvard.edu/xmlns/cts#edition",
+            "dc:Text"
+        ],
+        "dc:source": [{"@id": https://archive.org/details/poetaelatinimino12baeh2"}],
+        "dct:dateCopyrighted": 1879
+        "dc:creator": [
+            {"@lang": "eng", "@value": "Anonymous"
+        ],
+        "dc:contributor": ["Aemilius Baehrens"]
+        "dc:language": ["lat", "eng"]
+    },
+    "description": [
+        {
+           "@lang": "eng",
+            "@value": "Priapeia based on the edition of Aemilius Baehrens"
+        }
+    ],
+    "@type" : "Collection",
+    "totalItems" : "1",
+    "dts:read": "/api/dts/documents?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+    "dts:navigate": "/api/dts/navigation?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
+    "tei:refsDecl": [
+        {
+            "tei:matchPattern":  "\\w+",
+            "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])",
+            "@type": "book"
+        },
+        {
+            "tei:matchPattern": "\\w+\\.\\w+",
+            "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2'])",
+            "@type": "poem"
+        },
+        {
+            "tei:matchPattern":  "\\w+\.\w+\\.\\w+",
+            "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
+            "@type": "line"
         }
     ]
 }
