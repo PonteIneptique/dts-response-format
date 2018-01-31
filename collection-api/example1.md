@@ -235,8 +235,6 @@ As a provider of a small collection, I would do the choice here to expand the me
                     "@value": "Priapeia based on the edition of Aemilius Baehrens"
                 }
             ],
-            "@type" : "Collection",
-            "totalItems" : "1",
             "dts:read": "/api/dts/documents?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
             "dts:navigate": "/api/dts/navigation?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
             "tei:refsDecl": [
@@ -307,8 +305,6 @@ As a provider of a small collection, I would do the choice here to expand the me
             "@value": "Priapeia based on the edition of Aemilius Baehrens"
         }
     ],
-    "@type" : "Collection",
-    "totalItems" : "1",
     "dts:read": "/api/dts/documents?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
     "dts:navigate": "/api/dts/navigation?id=urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
     "tei:refsDecl": [
