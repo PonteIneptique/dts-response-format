@@ -222,7 +222,7 @@ As a provider of a small collection, I would do the choice here to expand the me
                     "dc:Text"
                 ],
                 "dc:source": [{"@id": "https://archive.org/details/poetaelatinimino12baeh2"}],
-                "dct:dateCopyrighted": 1879
+                "dct:dateCopyrighted": 1879,
                 "dc:creator": [
                     {"@lang": "eng", "@value": "Anonymous"}
                 ],
@@ -251,7 +251,7 @@ As a provider of a small collection, I would do the choice here to expand the me
                     "@type": "poem"
                 },
                 {
-                    "tei:matchPattern":  "\\w+\.\w+\\.\\w+",
+                    "tei:matchPattern":  "\\w+\\.\w+\\.\\w+",
                     "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
                     "@type": "line"
                 }
@@ -294,7 +294,7 @@ As a provider of a small collection, I would do the choice here to expand the me
             "dc:Text"
         ],
         "dc:source": [{"@id": "https://archive.org/details/poetaelatinimino12baeh2"}],
-        "dct:dateCopyrighted": 1879
+        "dct:dateCopyrighted": 1879,
         "dc:creator": [
             {"@lang": "eng", "@value": "Anonymous"}
         ],
@@ -323,7 +323,7 @@ As a provider of a small collection, I would do the choice here to expand the me
             "@type": "poem"
         },
         {
-            "tei:matchPattern":  "\\w+\.\w+\\.\\w+",
+            "tei:matchPattern":  "\\w+\\.\w+\\.\\w+",
             "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
             "@type": "line"
         }
