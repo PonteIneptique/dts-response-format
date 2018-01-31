@@ -19,6 +19,10 @@ I propose a slightly more fixed version of Hydra where the following would be al
 - `dts:download` holds a link or a list of links to a downloadable format of the current object
 
 
+## Subproposal :
+
+I believe saying we are using Hydra might be complicating the matters at hand and it would probably be easier to expand things based on the Hydra models but build our own (with our own documentation). I feel like giving out the documentation of Hydra ( https://www.hydra-cg.com/spec/latest/core/#introduction ) to most Non-DH developers would be counter-intuitive.
+
 ## Examples
 
 ### Root collection
@@ -323,5 +327,61 @@ As a provider of a small collection, I would do the choice here to expand the me
             "@type": "line"
         }
     ]
+}
+```
+
+### Paginated sub-collection
+
+#### Example of url : 
+
+- `/api/dts/collections/?id=lettres_de_poilus&page=19`
+
+#### Headers
+
+*Need to be written and need help as I don't get the URI templating thingie*
+
+#### Response
+
+```json
+{
+    "@context": {
+        "@base": "http://www.w3.org/ns/hydra/context.jsonld",
+        "dct": "http://purl.org/dc/terms/",
+        "dts": "http://purl.org//dts-ontology/#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "tei": "http://www.tei-c.org/ns/1.0",
+    },
+    "@id": "general",
+    "@type": "Collection",
+    "totalItems": "2",
+    "title": [
+        {"fre" : "Collection Générale de l'École Nationale des Chartes"}
+    ],
+    "dts:metadata": {
+        "dc:publisher": ["École Nationale des Chartes", "https://viaf.org/viaf/167874585"]
+    },
+    "@id" : "lettres_de_poilus",
+    "title" : [
+        {"@lang": "fre", "@value": "Correspondance des poilus", "default": true},
+        {"@lang": "unk", "@value": "French Soldiers of the Great War Mails"},
+    ],
+    "description": [
+        {"@lang": "fre", "@value": "Collection de lettres de poilus entre 1917 et 1918"}
+    ],
+    "@type" : "Collection",
+    "totalItems" : "10000"
+    "member": [
+        {
+            "member 190 up to 200"
+        }
+    ],
+    "view": {
+        "@id": "/api/dts/collections/?id=lettres_de_poilus&page=19",
+        "@type": "PartialCollectionView",
+        "first": "/an-issue/comments?page=1",
+        "previous": "/an-issue/comments?page=18",
+        "next": "/an-issue/comments?page=20",
+        "last": "/an-issue/comments?page=500"
+    }
 }
 ```
