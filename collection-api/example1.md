@@ -155,8 +155,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
                     "@value": "Anonymous lascivious Poems"
                 }
             ],
-            "@type" : "Collection",
-            "totalItems" : "1"
+            "@type" : "Resource"
         }
     ]
 }
@@ -209,7 +208,7 @@ As a provider of a small collection, I would do the choice here to expand the me
         }
     ],
     "@type" : "Collection",
-    "totalItems" : "1"
+    "totalItems" : "1",
     "member": [
         {
             "@id" : "urn:cts:latinLit:phi1103.phi001.lascivaroma-lat1",
@@ -319,7 +318,7 @@ As a provider of a small collection, I would do the choice here to expand the me
             "@type": "poem"
         },
         {
-            "tei:matchPattern":  "\\w+\\.\w+\\.\\w+",
+            "tei:matchPattern":  "\\w+\\.\\w+\\.\\w+",  
             "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
             "@type": "line"
         }
