@@ -121,7 +121,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
     "@type": "Collection",
     "totalItems": "2",
     "title" : [
-        "@lang": "lat", "@value": "Lasciva Roma", "default": true},
+        {"@lang": "lat", "@value": "Lasciva Roma", "default": true},
     ],
     "description": [
         {
@@ -145,7 +145,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
                     "http://chs.harvard.edu/xmlns/cts#work"
                 ],
                 "dc:creator": [
-                    {"@lang": "eng", "@value": "Anonymous"
+                    {"@lang": "eng", "@value": "Anonymous"}
                 ],
                 "dc:language": ["lat", "eng"]
             },
