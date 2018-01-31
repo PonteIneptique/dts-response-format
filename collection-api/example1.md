@@ -152,7 +152,7 @@ I propose a slightly more fixed version of Hydra where the following would be al
             "description": [
                 {
                    "@lang": "eng",
-                    "@value": "Anonymous lascivious Poems "
+                    "@value": "Anonymous lascivious Poems"
                 }
             ],
             "@type" : "Collection",
@@ -226,7 +226,7 @@ As a provider of a small collection, I would do the choice here to expand the me
                 "dc:creator": [
                     {"@lang": "eng", "@value": "Anonymous"}
                 ],
-                "dc:contributor": ["Aemilius Baehrens"]
+                "dc:contributor": ["Aemilius Baehrens"],
                 "dc:language": ["lat", "eng"]
             },
             "description": [
@@ -251,7 +251,7 @@ As a provider of a small collection, I would do the choice here to expand the me
                     "@type": "poem"
                 },
                 {
-                    "tei:matchPattern":  "\\w+\\.\w+\\.\\w+",
+                    "tei:matchPattern":  "\\w+\\.\\w+\\.\\w+",
                     "tei:replacementPattern": "#xpath(/tei:TEI/tei:text/tei:body/tei:div/tei:div[@n='$1']/tei:div[@n='$2']//tei:l[@n='$3'])",
                     "@type": "line"
                 }
@@ -298,7 +298,7 @@ As a provider of a small collection, I would do the choice here to expand the me
         "dc:creator": [
             {"@lang": "eng", "@value": "Anonymous"}
         ],
-        "dc:contributor": ["Aemilius Baehrens"]
+        "dc:contributor": ["Aemilius Baehrens"],
         "dc:language": ["lat", "eng"]
     },
     "description": [
