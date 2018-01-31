@@ -198,7 +198,7 @@ As a provider of a small collection, I would do the choice here to expand the me
             "http://chs.harvard.edu/xmlns/cts#work"
         ],
         "dc:creator": [
-            {"@lang": "eng", "@value": "Anonymous"
+            {"@lang": "eng", "@value": "Anonymous"}
         ],
         "dc:language": ["lat", "eng"]
     },
@@ -221,10 +221,10 @@ As a provider of a small collection, I would do the choice here to expand the me
                     "http://chs.harvard.edu/xmlns/cts#edition",
                     "dc:Text"
                 ],
-                "dc:source": [{"@id": https://archive.org/details/poetaelatinimino12baeh2"}],
+                "dc:source": [{"@id": "https://archive.org/details/poetaelatinimino12baeh2"}],
                 "dct:dateCopyrighted": 1879
                 "dc:creator": [
-                    {"@lang": "eng", "@value": "Anonymous"
+                    {"@lang": "eng", "@value": "Anonymous"}
                 ],
                 "dc:contributor": ["Aemilius Baehrens"]
                 "dc:language": ["lat", "eng"]
@@ -293,10 +293,10 @@ As a provider of a small collection, I would do the choice here to expand the me
             "http://chs.harvard.edu/xmlns/cts#edition",
             "dc:Text"
         ],
-        "dc:source": [{"@id": https://archive.org/details/poetaelatinimino12baeh2"}],
+        "dc:source": [{"@id": "https://archive.org/details/poetaelatinimino12baeh2"}],
         "dct:dateCopyrighted": 1879
         "dc:creator": [
-            {"@lang": "eng", "@value": "Anonymous"
+            {"@lang": "eng", "@value": "Anonymous"}
         ],
         "dc:contributor": ["Aemilius Baehrens"]
         "dc:language": ["lat", "eng"]
